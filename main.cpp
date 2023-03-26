@@ -9,22 +9,13 @@ using namespace std;
 int main(){
     Store* c = new Store();
     Store* c1 = new Store();
-    fstream cart("cart.bin", ios::in| ios::out| ios::binary| ios::trunc);
-    if (!cart) {
-        cerr << "Error: failed to open file." << endl;
-        return 1;
-    }
-    cout << "How many products:\n";
-    int n;
-    cin >>n;
-    for(int i = 0; i < n; i++){
-        cin.ignore();
-        c->prompt();
-    }
-    cart.write(reinterpret_cast<char*>(c), sizeof(*c));
-    cart.seekg(ios::beg);
-    cart.read(reinterpret_cast<char*>(c1), sizeof(*c1));
+    Items* item1 = new Items("Apple", 23.50, 30);
+    Items* item2 = new Items("Orange", 22.50, 12);
+    c->addItem(item1);
+    c->addItem(item2);
+    c->writeBin();
+    c1->readBin();
     c1->print();
-    cart.close();
+    
 
 }

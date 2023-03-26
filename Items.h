@@ -1,15 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/file.h to edit this template
- */
-
-/* 
- * File:   Items.h
- * Author: ckimo
- *
- * Created on March 25, 2023, 6:07 PM
- */
-
 #ifndef ITEMS_H
 #define ITEMS_H
 
@@ -36,13 +24,26 @@ public:
         cout << "Price: $" << price << endl;
         cout << "In stock: " << stock << endl;
     }
-    void changeName(string n){
+    
+    void setName(string n){
         name = n;
     }
-
-    void changePrice(double p){
+    void setPrice(double p){
         price = p;
     }
+    void setStock(int s){
+        stock = s;
+    }
+    string getName(){
+        return name;
+    }
+    double getPrice(){
+        return price;
+    }
+    int getStock(){
+        return stock;
+    }
+    
 };
 
 

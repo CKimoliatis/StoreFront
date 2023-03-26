@@ -1,22 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/cppFiles/file.h to edit this template
- */
-
-/* 
- * File:   Store.h
- * Author: ckimo
- *
- * Created on March 25, 2023, 6:41 PM
- */
-
 #ifndef STORE_H
 #define STORE_H
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
+
+#include "Items.h"
 using namespace std;
 
 class Store{
@@ -40,6 +26,10 @@ public:
         cin >> s;
         vec.push_back(new Items(n,p,s));
     }
+    
+    void addItem(Items* i){
+        vec.push_back(i);
+    }
 
     void print(){
         int i = 1;
@@ -48,6 +38,49 @@ public:
             x->print();
             i++;
         }
+    }
+    
+    void readBin(){
+        fstream file("shop.bin", ios::in | ios::binary);
+        if (!file) {
+            cerr << "error opening file" << endl;
+            return;
+        }
+        file.seekg(0, ios::end); // move the file pointer to the end
+        int size = file.tellg(); // get the size of the file
+        file.seekg(0, ios::beg); // move the file pointer back to the beginning
+
+        // read the data for each Player object and create a new Player object for
+        // each one
+        while (file.tellg() < size) {
+            string name;
+            int stock;
+            double price;
+            file.read(reinterpret_cast<char *>(&price), sizeof(double));
+            file.read(reinterpret_cast<char *>(&stock), sizeof(int));
+            getline(file, name);
+            Items *item = new Items(name, price, stock);
+            addItem(item);
+        }
+        file.close();
+    }
+    
+    void writeBin() {
+        fstream file("shop.bin", ios::out | ios::binary | ios::trunc);
+        if (!file) {
+            cerr << "error opening file" << endl;
+            return;
+        }
+        // write the data for each Player object to the file
+        for (const auto &item : vec) {
+            double price = item->getPrice();
+            int stock = item->getStock();
+            string name = item->getName();
+            file.write(reinterpret_cast<char *>(&price), sizeof(double));
+            file.write(reinterpret_cast<char *>(&stock), sizeof(int));
+            file << name << endl;
+        }
+        file.close();
     }
 };
 
