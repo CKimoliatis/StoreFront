@@ -16,6 +16,4 @@ int main(){
     c->writeBin();
     c1->readBin();
     c1->print();
-    
-
 }

@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>Items.h</itemPath>
       <itemPath>Store.h</itemPath>
+      <itemPath>User.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -42,6 +43,8 @@
       </item>
       <item path="Store.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="User.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -68,6 +71,8 @@
       <item path="Items.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Store.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="User.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
