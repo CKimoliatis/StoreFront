@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <map>
 #include "Items.h"
 
 using namespace std;
@@ -13,7 +14,7 @@ class User{
 private:
     string name;
     string password;
-    vector<Items*> cart;
+    map<Items*, int> cart1;
 public:
     User(){
         name = "";
@@ -24,34 +25,39 @@ public:
         password = p;
     }
 
-    void addToCart(Items* item){
-        cart.push_back(item);
+    void addToCart(Items* item, int n){
+        cart1[item]+= n;
     }
 
-    void delItem(string name) {
-        vector<Items *>::iterator it;
-        it = cart.begin();
-        for (int i = 0; i < p.size(); i++) {
-        if (name == cart[i]->getName()) {
-            cart.erase(it);
-            break;
+    void delItem(string name, int n) {
+        for (auto &x:cart1) {
+            if (name == x.first->getName()) {
+                x.second-= n;
+                break;
+            }
         }
-        it++;
     }
-}
 
     void printUser(){
+        int tot = 0;
+        for(auto x: cart1){
+            tot+= x.second;
+        }
         cout << "Name: " << name << endl;
         cout << "Password: " << password << endl;
-        cout << "Number of items in cart: " << cart.size() << endl;
+        cout << "Number of items in cart: " << tot << endl;
     }
 
     void printCart(){
         int i = 1;
-        for(const auto x:cart){
-            cout << "Item " << i << ":" << endl;
-            x->print(); 
+        for(const auto x:cart1){
+            if(x.second >0){
+                cout << "Item " << i << ":" << endl;
+            x.first->print();
+            cout << "Quantity: " << x.second << endl;
             i++;
+            }
+            
         }
     }
 };
