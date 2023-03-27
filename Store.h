@@ -31,12 +31,21 @@ public:
         vec.push_back(i);
     }
 
+    Items* findItem(string name){
+        for(auto x: vec){
+            if(name == x->getName()){
+                return x;
+            }
+        }
+    }
+
     void print(){
         int i = 1;
         for(auto x: vec){
             cout << "Item " << i << ": \n";
             x->print();
             i++;
+            cout << endl;
         }
     }
     
