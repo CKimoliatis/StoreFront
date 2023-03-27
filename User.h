@@ -58,6 +58,7 @@ public:
                     store->print();
                     string n;
                     int q;
+
                     cout << "\nWould you like to add anything to Cart?\n";
                     cout << "If not enter 0 to return to menu\n";
                     cout << "Enter quantity:\n";
@@ -66,12 +67,14 @@ public:
                     cin.ignore();
                     getline(cin, n);
                     addToCart(n, q, store);
+
                     cout << "\nEnter 0 to return to Menu.\n";
                     cout << "Enter 1 to add more to cart.\n";
                     cout << "Enter 2 to see cart.\n";
                     int choice;
                     cin>> choice;
                     cout << endl;
+                    
                     if(choice == 0){
                         break;
                     }else if(choice == 1){
