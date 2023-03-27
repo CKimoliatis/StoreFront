@@ -87,7 +87,8 @@ public:
                     }
                 }
             }else if(choice == 2){
-
+                printCart();
+                //TODO adding more prompts
             }else if(choice == 3){
                 cout << "Thank you for using the store!";
                 return;
