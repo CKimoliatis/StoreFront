@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 class Items{
@@ -21,7 +22,7 @@ public:
 
     void print(){
         cout << "Item name: " << name << endl;
-        cout << "Price: $" << price << endl;
+        cout << fixed << setprecision(2) << "Price: $" << price << endl;
         cout << "In stock: " << stock << endl;
     }
     

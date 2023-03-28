@@ -51,6 +51,7 @@ public:
             cout << "1. See Store Front.\n";
             cout << "2. See Cart\n";
             cout << "3. Logout\n";
+            cout << "Enter a number corresponding to the action:\n";
             cin >> choice;
             if(choice == 1){
                 cout << endl;
@@ -91,7 +92,10 @@ public:
                 }
             }else if(choice == 2){
                 printCart();
-                //TODO adding more prompts
+                int n;
+                cout << "Enter any integer to return to menu.\n";
+                cin >>n;
+                
             }else if(choice == 3){
                 cout << "Thank you for using the store!";
                 return;
@@ -111,14 +115,18 @@ public:
 
     void printCart(){
         int i = 1;
-        for(const auto x:cart1){
-            if(x.second >0){
-                cout << "Item " << i << ":" << endl;
-            x.first->print();
-            cout << "Quantity: " << x.second << endl;
-            i++;
+        if(cart1.empty()){
+            cout << "Your cart is empty!\n";
+        }else{
+            cout << "\n-------Cart-------\n\n";
+            for(const auto x:cart1){
+                if(x.second >0){
+                    cout << "Item " << i << ":" << endl;
+                    x.first->print();
+                    cout << "Quantity: " << x.second << endl << endl;
+                    i++;
+                }
             }
-            
         }
     }
 };
