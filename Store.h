@@ -3,6 +3,7 @@
 
 
 #include "Items.h"
+#include "AllHeader.h"
 using namespace std;
 
 class Store{
@@ -49,11 +50,10 @@ public:
         }
     }
     
-    void readBin(){
+    bool readBin(){
         fstream file("shop.bin", ios::in | ios::binary);
         if (!file) {
-            cerr << "error opening file" << endl;
-            return;
+            return 0;
         }
         file.seekg(0, ios::end); // move the file pointer to the end
         int size = file.tellg(); // get the size of the file
@@ -72,6 +72,7 @@ public:
             addItem(item);
         }
         file.close();
+        return 1;
     }
     
     void writeBin() {

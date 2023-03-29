@@ -1,11 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
-#include <map>
+#include "AllHeader.h"
 #include "Items.h"
 #include "Store.h"
 
@@ -15,28 +11,43 @@ class User{
 private:
     string name;
     string password;
-    map<Items*, int> cart1;
+    bool active;
+    map<Items*, int> cart;
 public:
     User(){
         name = "";
         password = "";
+        active = 1;
     }
     User(string n, string p){
         name = n;
         password = p;
+        active = 1;
+    }
+    string getName(){
+        return name;
+    }
+    string getPass(){
+        return password;
+    }
+    void setName(string n){
+        name = n;
+    }
+    void setPass(string p){
+        password = p;
     }
 
     void addToCart(Items* item, int n){
-        cart1[item]+= n;
+        cart[item]+= n;
     }
 
     void addToCart(string n, int q, Store* s){
         Items* item = s->findItem(n);
-        cart1[item]+= q;
+        cart[item]+= q;
     }
 
     void delItem(string name, int n) {
-        for (auto &x:cart1) {
+        for (auto &x:cart) {
             if (name == x.first->getName()) {
                 x.second-= n;
                 break;
@@ -105,7 +116,7 @@ public:
 
     void printUser(){
         int tot = 0;
-        for(auto x: cart1){
+        for(auto x: cart){
             tot += x.second;
         }
         cout << "Name: " << name << endl;
@@ -115,11 +126,11 @@ public:
 
     void printCart(){
         int i = 1;
-        if(cart1.empty()){
+        if(cart.empty()){
             cout << "Your cart is empty!\n";
         }else{
             cout << "\n-------Cart-------\n\n";
-            for(const auto x:cart1){
+            for(const auto x:cart){
                 if(x.second >0){
                     cout << "Item " << i << ":" << endl;
                     x.first->print();

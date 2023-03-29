@@ -1,11 +1,7 @@
 #ifndef ITEMS_H
 #define ITEMS_H
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <iomanip>
+#include "AllHeader.h"
 using namespace std;
 
 class Items{
