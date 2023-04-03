@@ -37,8 +37,8 @@ public:
     }
 
     void writeUsers(){
-        user.push_back(new User("1", "1"));
-        user.push_back(new User("2", "2"));
+        user.push_back(new User("ckimo", "ckimo"));
+        user.push_back(new User("pi", "pi"));//Testing purposes
         fstream file("users.bin", ios::binary|ios::out);
         if(file.is_open()){
             for(const auto& x: user){

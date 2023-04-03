@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "chrono": "cpp",
+        "future": "cpp",
+        "system_error": "cpp",
+        "typeindex": "cpp",
+        "xlocale": "cpp",
+        "xstring": "cpp",
+        "iostream": "cpp",
+        "xiosbase": "cpp",
+        "ostream": "cpp",
+        "istream": "cpp",
+        "iosfwd": "cpp",
+        "vector": "cpp"
+    }
+}

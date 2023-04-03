@@ -15,6 +15,12 @@ public:
         Items* item = new Items(n, p, s);
         vec.push_back(item);
     }
+    ~Store() {
+        for (auto item : vec) {
+            delete item;
+        }
+        vec.clear();
+    }
     void prompt(){
         string n;
         double p;
