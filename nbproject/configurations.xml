@@ -6,7 +6,6 @@
                    projectFiles="true">
       <itemPath>Admin.h</itemPath>
       <itemPath>AllHeader.h</itemPath>
-      <itemPath>Init.h</itemPath>
       <itemPath>Items.h</itemPath>
       <itemPath>Store.h</itemPath>
       <itemPath>User.h</itemPath>
@@ -46,8 +45,6 @@
       </item>
       <item path="AllHeader.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Init.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Items.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Store.h" ex="false" tool="3" flavor2="0">
@@ -80,8 +77,6 @@
       <item path="Admin.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="AllHeader.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Init.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Items.h" ex="false" tool="3" flavor2="0">
       </item>

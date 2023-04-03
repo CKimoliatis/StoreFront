@@ -2,7 +2,6 @@
 #include "Items.h"
 #include "Store.h"
 #include "User.h"
-#include "Init.h"
 using namespace std;
 
 void checkAcc(User* user){
