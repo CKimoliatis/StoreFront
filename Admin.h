@@ -34,6 +34,18 @@ public:
         }
         users.clear();
     }
+    void checkStore(Store* s){
+        s->print();
+    }
+    void addAdmin(string n, string p){
+        fstream file("admin.bin", ios::binary|ios::app|ios::out);
+        AdminInfo* temp = new AdminInfo();
+        strcpy(temp->name, n.c_str());
+        strcpy(temp->password, p.c_str());
+        file.write(reinterpret_cast<char*>(temp), sizeof(AdminInfo));
+        file.close();
+        delete temp;
+    }
     void fillVec(){
         fstream file("users.bin", ios::binary|ios::in);
         int i = 0;
@@ -48,6 +60,7 @@ public:
         for(auto x: users){
             cout << x->name << endl;
             cout << x->password << endl;
+            cout << x->active << endl;
         }
     }
 };

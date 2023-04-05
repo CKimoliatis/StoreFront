@@ -12,8 +12,9 @@ struct UserInfo
 {
     char name[20];
     char password[20];
+    bool active;
 
-    UserInfo() : name(""), password("") {}
+    UserInfo() : name(""), password(""), active(true) {}
 };
 
 class User
