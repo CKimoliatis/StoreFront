@@ -16,7 +16,7 @@ void addAdmin(){
 }
 
 bool checkAcc(string n, string p){
-    fstream file("users.bin", ios::binary|ios:: in);
+    fstream file("admin.bin", ios::binary|ios:: in);
     AdminInfo* temp = new AdminInfo();
     while(file.read(reinterpret_cast<char*>(temp), sizeof(AdminInfo))){
         if(n.compare(temp->name) == 0 && p.compare(temp->password) == 0){
@@ -47,6 +47,7 @@ int main()
     cin>>p;
     if(checkAcc(n, p)){
         Admin* admin = new Admin(n,p);
+        cout << "ADMIN\n";
         delete admin;
     }else{
         User* user = new User(n,p);
