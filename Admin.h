@@ -33,6 +33,22 @@ public:
         }
         users.clear();
     }
+    void fillVec(){
+        fstream file("users.bin", ios::binary|ios::in);
+        int i = 0;
+        UserInfo* temp = new UserInfo();
+        while(file.read(reinterpret_cast<char*>(temp), sizeof(UserInfo))){
+            users.push_back(temp);
+            temp = new UserInfo();
+        }
+        file.close();
+    }
+    void printUsers(){
+        for(auto x: users){
+            cout << x->name << endl;
+            cout << x->password << endl;
+        }
+    }
 };
 
 #endif /* ADMIN_H */
