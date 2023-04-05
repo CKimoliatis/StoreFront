@@ -25,6 +25,7 @@ public:
         info = new AdminInfo;
         strcpy(info->name, n.c_str());
         strcpy(info->password, p.c_str());
+        this->fillVec();
     }
     ~Admin(){
         delete info;
