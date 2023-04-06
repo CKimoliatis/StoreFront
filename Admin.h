@@ -34,9 +34,27 @@ public:
         }
         users.clear();
     }
+    void swapActiveUser(string n){
+        for(auto x: users){
+            if(strcmp(x->name, n.c_str()) == 0){
+                x->active = !x->active;
+                break;
+            }
+        }
+    }
+
+    void writeVec(){
+        fstream file("users.bin", ios::binary|ios::out|ios::trunc);
+        for(int i = 0; i < users.size(); i++){
+            file.write(reinterpret_cast<char*>(users[i]), sizeof(UserInfo));
+        }
+        file.close();
+    }
+
     void checkStore(Store* s){
         s->print();
     }
+
     void addAdmin(string n, string p){
         fstream file("admin.bin", ios::binary|ios::app|ios::out);
         AdminInfo* temp = new AdminInfo();
@@ -56,7 +74,18 @@ public:
         }
         file.close();
     }
-    void printUsers(){
+
+    void printActiveUsers(){
+        for(auto x: users){
+            if(x->active){
+                cout << x->name << endl;
+                cout << x->password << endl;
+                cout << x->active << endl;
+            }
+        }
+    }
+
+    void printAllUsers(){
         for(auto x: users){
             cout << x->name << endl;
             cout << x->password << endl;

@@ -1,7 +1,6 @@
 #ifndef STORE_H
 #define STORE_H
 
-
 #include "Items.h"
 #include "AllHeader.h"
 using namespace std;
@@ -44,6 +43,7 @@ public:
                 return x;
             }
         }
+        return new Items();
     }
 
     void print(){

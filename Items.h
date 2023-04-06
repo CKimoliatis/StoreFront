@@ -10,6 +10,7 @@ private:
     double price;
     int stock;
 public:
+    Items() = default;
     Items(string n, double p, int s){
         name = n;
         price = p;

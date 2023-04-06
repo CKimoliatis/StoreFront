@@ -29,7 +29,15 @@ int main()
 
     if(checkAcc(n, p)){
         Admin* admin = new Admin(n,p);
-        admin->printUsers();
+        string tempName;
+        cout << "Enter name to deactivate" << endl;
+        cin >> tempName;
+        cout << endl;
+        admin->swapActiveUser(tempName);
+        admin->writeVec();
+        admin->printAllUsers();
+        cout << endl;
+        admin->printActiveUsers();
         delete admin;
     }else{
         User* user = new User(n,p);
