@@ -29,6 +29,7 @@ int main()
 
     if(checkAcc(n, p)){
         Admin* admin = new Admin(n,p);
+        //admin->adminPrompt(store);
         admin->printUsers();
         delete admin;
     }else{

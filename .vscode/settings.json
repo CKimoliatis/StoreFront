@@ -13,6 +13,8 @@
         "iosfwd": "cpp",
         "vector": "cpp",
         "filesystem": "cpp",
-        "xlocinfo": "cpp"
+        "xlocinfo": "cpp",
+        "iomanip": "cpp",
+        "map": "cpp"
     }
 }
