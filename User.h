@@ -53,18 +53,15 @@ public:
     {
         strcpy(info->password, p.c_str());
     }
-
     void addToCart(Items *item, int n)
     {
         cart[item] += n;
     }
-
     void addToCart(string n, int q, Store *s)
     {
         Items *item = s->findItem(n);
         cart[item] += q;
     }
-
     void delItem(string name, int n)
     {
         for (auto &x : cart)
@@ -76,7 +73,6 @@ public:
             }
         }
     }
-
     void userPrompt(Store *store)
     {
         int choice;
@@ -146,10 +142,11 @@ public:
             {
                 cout << "Thank you for using the store!";
                 return;
+            }else{
+                cout << "Invalid choice. Please reenter choice.\n";
             }
         }
     }
-
     void printUser()
     {
         int tot = 0;
@@ -161,7 +158,6 @@ public:
         cout << "Password: " << info->password << endl;
         cout << "Number of items in cart: " << tot << endl;
     }
-
     void printCart()
     {
         int i = 1;
@@ -185,7 +181,6 @@ public:
             }
         }
     }
-
     void verifyUser()
     {
         bool userFound = false;

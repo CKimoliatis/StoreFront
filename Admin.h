@@ -75,41 +75,39 @@ public:
             cout << "3. See store\n";
             cout << "4. Add Item to store\n";
             cout << "5. Change a user's password\n";
+            cout << "6. Create and admin account\n";
             cout << "0. Logout\n";
             cout << "Enter choice shown above:\n";
             cin>>choice;
             if(choice == 1){
                 this->printUsers();
             }else if(choice == 2){
-                cout << "Enter username of user to change status\n";
-                string n;
-                cin>>n;
-                this->changeUserStatus(n);
+                this->changeUserStatus();
             }else if(choice == 3){
                 store->print();
             }else if(choice == 4){
-                string n;
-                double p;
-                int s;
-                cout << "Enter the name of the item:\n";
-                getline(cin, n);
-                cout << "Enter the price:\n";
-                cin >> p;
-                cout << "Enter the amount of stock:\n";
-                cin >> s;
-                Items* item = new Items(n, p, s);
-                store->addItem(item);
-                delete item;
+                store->prompt();
             }else if(choice == 5){
-                cout << "Enter username to change password\n";
-                string n;
-                cin >> n;
-                this->changeUserPass(n);
+                this->changeUserPass();
+            }else if(choice == 6){
+                string n, p;
+                cout << "Enter username of new admin account:\n";
+                cin>>n;
+                cout << "Enter password of new admin account:\n";
+                cin>>p;
+                this->addAdmin(n,p);
+                cout << "New admin account created!\n";
+            }else{
+                cout << "Choice invalid. Please reenter choice.\n";
             }
         }while(choice != 0);
+        this->writeVec();
     }
 
-    void changeUserPass(string n){
+    void changeUserPass(){
+        cout << "Enter username to change password\n";
+        string n;
+        cin >> n;
         char p[20];
         cout << "Enter new password:\n";
         cin >> p;
@@ -121,11 +119,15 @@ public:
             }
         }
     }
-    void changeUserStatus(string n){
+
+    void changeUserStatus(){
+        cout << "Enter username of user to change status\n";
+        string n;
+        cin>>n;
         for(auto &x: users){
-            if(n.compare(x->name)){
+            if(strcmp(n.c_str(), x->name) == 0){
                 x->active = !x->active;
-                cout << x->name << "'s status changed to " << x->active;
+                cout << x->name << "'s status changed to " << (x->active?"Active":"Inactive") << endl;
                 break;
             }
         }

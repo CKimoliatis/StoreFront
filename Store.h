@@ -15,20 +15,23 @@ public:
         vec.push_back(item);
     }
     ~Store() {
+        this->writeBin();
         for (auto item : vec) {
             delete item;
         }
         vec.clear();
     }
+
     void prompt(){
         string n;
         double p;
         int s;
-        cout << "Enter name: " << endl;
+        cout << "Enter the name of the item:\n";
+        cin.ignore();
         getline(cin, n);
-        cout << "Enter price: " << endl;
+        cout << "Enter the price:\n";
         cin >> p;
-        cout << "Enter stock: " << endl;
+        cout << "Enter the amount of stock:\n";
         cin >> s;
         vec.push_back(new Items(n,p,s));
     }
@@ -48,11 +51,11 @@ public:
 
     void print(){
         int i = 1;
+        cout << setw(25) << "Store Front\n";
         for(auto x: vec){
-            cout << "Item " << i << ": \n";
+            cout << "\n" << setw(20) << "Item " << i << ": \n";
             x->print();
             i++;
-            cout << endl;
         }
     }
     

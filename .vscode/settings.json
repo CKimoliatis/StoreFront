@@ -15,6 +15,7 @@
         "filesystem": "cpp",
         "xlocinfo": "cpp",
         "iomanip": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "ios": "cpp"
     }
 }

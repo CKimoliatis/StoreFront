@@ -17,10 +17,10 @@ public:
         stock = s;
     }
 
-    void print(){
-        cout << "Item name: " << name << endl;
-        cout << fixed << setprecision(2) << "Price: $" << price << endl;
-        cout << "In stock: " << stock << endl;
+    void print() const {
+        cout << left << setw(15) << "Item name:" << setw(20) << right << name << endl;
+        cout << left << setw(15) << "Price:" << setw(16) << right << "$ " << fixed << setprecision(2) << price << endl;
+        cout << left << setw(15) << "In stock:" << setw(20) << right << stock << endl;
     }
     
     void setName(string n){
