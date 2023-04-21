@@ -51,9 +51,9 @@ public:
 
     void print(){
         int i = 1;
-        cout << setw(25) << "Store Front\n";
+        cout << "-------------Store Front------------\n";
         for(auto x: vec){
-            cout << "\n" << setw(20) << "Item " << i << ": \n";
+            cout << "\n" << setw(20) << "Item " << i << ":\n";
             x->print();
             i++;
         }

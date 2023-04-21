@@ -22,17 +22,19 @@ class User
 private:
     UserInfo *info;
     map<Items *, int> cart;
-
+    double total;
 public:
     User()
     {
        info = new UserInfo;
+       total = 0;
     }
     User(string n, string p)
     {
         info = new UserInfo;
         strcpy(info->name, n.c_str());
         strcpy(info->password, p.c_str());
+        total = 0;
     }
     ~User(){
         delete info;
@@ -61,6 +63,8 @@ public:
     {
         Items *item = s->findItem(n);
         cart[item] += q;
+        
+        total += item->getPrice()*q;
     }
     void delItem(string name, int n)
     {
@@ -81,7 +85,8 @@ public:
             cout << "\nMenu:\n";
             cout << "1. See Store Front.\n";
             cout << "2. See Cart\n";
-            cout << "3. Logout\n";
+            cout << "3. Checkout\n";
+            cout << "0. Logout\n";
             cout << "Enter a number corresponding to the action:\n";
             cin >> choice;
             if (choice == 1)
@@ -130,21 +135,26 @@ public:
                             continue;
                     }
                 }
-            }
-            else if (choice == 2)
-            {
+            }else if (choice == 2){
                 printCart();
                 int n;
                 cout << "Enter any integer to return to menu.\n";
                 cin >> n;
-            }
-            else if (choice == 3)
-            {
+            }else if(choice == 3){
+                this->checkout();
+                cout << "Thank you for your purchase!\n";
+                return;
+            }else if (choice == 0){
                 cout << "Thank you for using the store!";
                 return;
             }else{
                 cout << "Invalid choice. Please reenter choice.\n";
             }
+        }
+    }
+    void checkout(){
+        for(auto &x:cart){
+            x.first->setStock(x.first->getStock() - x.second);
         }
     }
     void printUser()
@@ -173,12 +183,13 @@ public:
                 if (x.second > 0)
                 {
                     cout << "Item " << i << ":" << endl;
-                    x.first->print();
-                    cout << "Quantity: " << x.second << endl
-                         << endl;
+                    cout << left << setw(15) << "Item name:" << setw(20) << right << x.first->getName() << endl;
+                    cout << left << setw(15) << "Price:" << setw(16) << right << "$ " << fixed << setprecision(2) << x.first->getPrice() << endl;
+                    cout << "Quantity: " << setw(25) << right << x.second << endl << endl;
                     i++;
                 }
             }
+            cout << left << setw(15) << "Total:" << setw(16) << right << "$ " << fixed << setprecision(2) << total << endl;
         }
     }
     void verifyUser()
@@ -192,28 +203,35 @@ public:
             if(strcmp(temp->name,info->name) == 0 && strcmp(temp->password, info->password) == 0){
                 cout << "\nWelcome back " << temp->name << "!" << endl;
                 userFound = true;
+                info->active = temp->active;
+                break;
             }else if(strcmp(temp->name,info->name) == 0 && strcmp(temp->password, info->password) != 0){
                 do{
                     cout << "Wrong Password Please Reenter Password:\n";
                     cin >> info->password;
                     userFound = true;
                 }while(strcmp(temp->password, info->password) != 0);
+                info->active = temp->active;
+                break;
             }
         }
         file.close();
 
         // If user not found, add them to the file
-        if (!userFound)
-        {
+         if (!userFound){
             file.open("users.bin", ios::binary | ios::app);
-            if (!file)
-            {
+            if (!file){
                 cerr << "Error opening output file." << endl;
                 delete temp;
                 return;
             }
+            
+            UserInfo newUser; // Create a new user object for the new user
+            strcpy(newUser.name, info->name);
+            strcpy(newUser.password, info->password);
+            newUser.active = 1;
 
-            file.write(reinterpret_cast<char *>(info), sizeof(UserInfo));
+            file.write(reinterpret_cast<char*>(&newUser), sizeof(UserInfo));
             cout << "User added to file." << endl;
 
             file.close();

@@ -29,6 +29,7 @@ public:
         this->fillVec();
     }
     ~Admin(){
+        this->writeVec();
         delete info;
         for (auto x : users) {
             delete x;
@@ -75,7 +76,7 @@ public:
             cout << "3. See store\n";
             cout << "4. Add Item to store\n";
             cout << "5. Change a user's password\n";
-            cout << "6. Create and admin account\n";
+            cout << "6. Create an admin account\n";
             cout << "0. Logout\n";
             cout << "Enter choice shown above:\n";
             cin>>choice;
@@ -97,11 +98,12 @@ public:
                 cin>>p;
                 this->addAdmin(n,p);
                 cout << "New admin account created!\n";
+            }else if(choice == 0){
+                cout << "Thank you for using the store!\n";
             }else{
                 cout << "Choice invalid. Please reenter choice.\n";
             }
         }while(choice != 0);
-        this->writeVec();
     }
 
     void changeUserPass(){
