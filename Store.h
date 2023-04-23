@@ -7,19 +7,19 @@ using namespace std;
 
 class Store{
 private:
-    vector<Items*> vec;
+    vector<Items*> items;
 public:
     Store(){}
     Store(string n, double p, int s){
         Items* item = new Items(n, p, s);
-        vec.push_back(item);
+        items.push_back(item);
     }
     ~Store() {
         this->writeBin();
-        for (auto item : vec) {
+        for (auto item : items) {
             delete item;
         }
-        vec.clear();
+        items.clear();
     }
 
     void prompt(){
@@ -33,15 +33,15 @@ public:
         cin >> p;
         cout << "Enter the amount of stock:\n";
         cin >> s;
-        vec.push_back(new Items(n,p,s));
+        items.push_back(new Items(n,p,s));
     }
     
     void addItem(Items* i){
-        vec.push_back(i);
+        items.push_back(i);
     }
 
     Items* findItem(string name){
-        for(auto x: vec){
+        for(auto x: items){
             if(name == x->getName()){
                 return x;
             }
@@ -52,7 +52,7 @@ public:
     void print(){
         int i = 1;
         cout << "-------------Store Front------------\n";
-        for(auto x: vec){
+        for(auto x: items){
             cout << "\n" << setw(20) << "Item " << i << ":\n";
             x->print();
             i++;
@@ -91,7 +91,7 @@ public:
             return;
         }
         // write the data for each Player object to the file
-        for (const auto &item : vec) {
+        for (const auto &item : items) {
             double price = item->getPrice();
             int stock = item->getStock();
             string name = item->getName();
